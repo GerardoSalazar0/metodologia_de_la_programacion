@@ -8,7 +8,7 @@ print(message, another_message)
 print(another_message, message)
 
 """
-    Los nombres de laas variables deben nombrarse solo con:
+    Los nombres de las variables deben nombrarse solo con:
     - letras, numeros y guión bajos
     - deben comenzar con unas letras o guión bajo pero no con números:
     (correcto) message1, (incorrect) 1_message
