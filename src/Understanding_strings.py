@@ -90,3 +90,23 @@ print(message)
 
 message_ = "Una fortaleza de 'python' es su comunidad activa" 
 print(message_)
+
+
+#f-strings
+full_name1 = "charly"
+last_name1 = "mercury"
+full_name1= f"[first_name1. title() (last_name1)]"
+print(full_name)
+
+
+
+
+
+
+#Ejercicio de f-strings
+full_name2 = "El Pirata de Culiacan"
+frase_famosa = "'Así nomas uedó'"
+nombreyfrase = f"{full_name2} una vez dijo {frase_famosa}"
+print(nombreyfrase)
+
+
