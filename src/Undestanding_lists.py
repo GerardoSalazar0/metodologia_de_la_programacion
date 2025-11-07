@@ -111,3 +111,35 @@ print(favorite_fruits)
 sorted_fruits= sorted(favorite_fruits) # ordena temporalmente
 print(sorted_fruits) # lista ordenada temporalmente
 print(favorite_fruits) # la lista original no cambia
+
+#LOOPING (LOOP) WHILR and FOR
+""" for Iterable                ----(identacion)
+---- actions
+"""
+magicians = ["harry", "ron", "hermione"]
+print(magicians[0], magicians[1], magicians[2])
+for magician in magicians: 
+    print(magician) 
+    print(magician.upper()) 
+    print(" ")
+print("gracias magos :v")
+print(f"thx {magician.upper()} fue un garan espectaculo")
+
+# magician es una variable auxiliar
+
+"""
+Python utiliza la identacion para determianr cuando una linea de codigo
+esta conecatada a una linea de codigo anterior basicamente, se 
+utilizan 4 espacios en blanco para obligarnos a escribir codigos 
+bien estructurados y ordenados.
+"""
+
+"""
+C
+for (i==0; i<10; i++){
+   }
+"""
+
+# Identacion innecesaria / habra error si usas un tab a lo wey
+print("hola grr")
+print("como andas")
