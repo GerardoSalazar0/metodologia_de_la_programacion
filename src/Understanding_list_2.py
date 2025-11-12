@@ -27,3 +27,11 @@ players= ['charles', 'martina', 'florence', 'eli']
 player_2=players[:]
 player_2= list(players)
 players_3= players.copy()
+
+
+cars = ["bwm", "toyota", "volkswagen", "porche"]
+print(cars)
+cars[0] = "bmw"
+cars[3] = "porshe"
+print(cars)
+
