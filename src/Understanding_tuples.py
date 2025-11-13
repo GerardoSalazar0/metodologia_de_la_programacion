@@ -20,7 +20,7 @@ print(Dimensions[1])
 
 # Dimensions[0]= 300 NO SE PUEDE
 for dimension in Dimensions:
-    print(Dimensions)
+    print(dimension)
 
 
 """
