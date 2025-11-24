@@ -1,0 +1,456 @@
+# Manejo de números y booleanos en Python
+# Materia: Metodología de la Programación 
+# Profesor: Charly Mercury 
+# Estudiante: Gerardo Salazar de la Fuente (2530032) 1-1 IM  
+
+# Resumen Ejecutivo:
+"""En Python, los tipos int y float representan números: los int son enteros
+sin decimales y los float permiten valores con punto decimal. Los booleanos
+(True y False) aparecen cuando se realizan comparaciones, como >, < o ==,
+y son fundamentales para tomar decisiones con if.
+
+Validar rangos es esencial para evitar errores lógicos y matemáticos,
+especialmente divisiones entre cero o entradas imposibles. Este documento
+explica cada problema usando un diseño claro de entradas, salidas y
+validaciones, junto con el uso correcto de int, float y bool para
+cálculos y decisiones. También se ilustra cómo combinar condiciones con
+and, or y not, aplicadas a contextos reales como temperaturas, pagos,
+descuentos, préstamos y cálculos corporales."""
+
+# Buenas practicas para el manejo de números y booleanos:
+"""
+Es importante elegir el tipo de dato adecuado para cada tarea: usar int
+para contadores o cantidades enteras y float cuando se requieran decimales.
+Para evitar repetir cálculos complejos, se recomienda guardar resultados
+intermedios en variables descriptivas.
+
+Antes de procesar cualquier entrada, siempre se debe validar que los
+valores sean correctos, por ejemplo, evitar cantidades negativas cuando
+no tienen sentido y prevenir divisiones entre cero.
+
+Los nombres de variables deben ser claros y coherentes, y los mensajes
+mostrados al usuario deben ser directos y fáciles de entender.
+También es útil documentar con claridad qué significado tienen los valores
+booleanos en cada contexto, explicando cuándo algo es true y cuándo es false.
+"""
+
+# PROBLEMA 1: Temperature converter and range flag
+# Descripción:
+"""Converts a temperature in °C to Fahrenheit and Kelvin.
+Also determines if it is a high temperature (>= 30°C) using a boolean."""
+
+# Inputs:
+# - temp_c (float)
+
+# Outputs:
+# - "Fahrenheit:" <value>
+# - "Kelvin:" <value>
+# - "High temperature:" true|false
+
+# Validations:
+# - temp_c debe ser convertible a float
+# - Kelvin no puede ser negativo
+
+# Código:
+try:
+    temp_c = float(input("Enter temperature in Celsius: "))
+except:
+    print("Error: invalid input")
+    temp_c = None
+
+if temp_c is not None:
+    temp_k = temp_c + 273.15
+
+    if temp_k < 0:
+        print("Error: invalid input")
+    else:
+        temp_f = temp_c * 9/5 + 32
+        is_high_temperature = (temp_c >= 30.0)
+
+        print("Fahrenheit:", temp_f)
+        print("Kelvin:", temp_k)
+        print("High temperature:", str(is_high_temperature).lower())
+
+
+# Test cases:
+# 1) Normal: temp_c = 
+"""Enter temperature in Celsius: 26
+Fahrenheit: 78.8
+Kelvin: 299.15
+High temperature: false
+"""
+# 2) Border: temp_c = 
+"""Enter temperature in Celsius: 30
+Fahrenheit: 86.0
+Kelvin: 303.15
+High temperature: true"""
+# 3) Error: temp_c =
+"""Enter temperature in Celsius: -432
+Error: invalid input"""
+
+# PROBLEMA 2 Work hours and overtime payment
+# Descripción:
+"""
+Calculate the weekly payment considering overtime (>40).
+"""
+
+# Inputs:
+# - hours_worked (float)
+# - hourly_rate (float)
+
+# Outputs:
+# - "Regular pay:"
+# - "Overtime pay:"
+# - "Total pay:"
+# - "Has overtime:" true|false
+
+# Validations:
+# - hours_worked >= 0
+# - hourly_rate > 0
+
+
+# Código:
+try:
+    hours_worked = float(input("Enter worked hours: "))
+    hourly_rate = float(input("Enter hourly rate: "))
+except:
+    print("Error: invalid input")
+    hours_worked = -1
+    hourly_rate = -1
+
+if hours_worked < 0 or hourly_rate <= 0:
+    print("Error: invalid input")
+else:
+    regular_hours = min(hours_worked, 40)
+    overtime_hours = max(hours_worked - 40, 0)
+
+    regular_pay = regular_hours * hourly_rate
+    overtime_pay = overtime_hours * hourly_rate * 1.5
+    total_pay = regular_pay + overtime_pay
+
+    has_overtime = (hours_worked > 40)
+
+    print("Regular pay:", regular_pay)
+    print("Overtime pay:", overtime_pay)
+    print("Total pay:", total_pay)
+    print("Has overtime:", str(has_overtime).lower())
+
+
+# Test cases:
+# 1) Normal: 
+"""Enter worked hours: 44
+Enter hourly rate: 25
+Regular pay: 1000.0
+Overtime pay: 150.0
+Total pay: 1150.0
+Has overtime: true"""
+# 2) Border: 
+"""Enter worked hours: 38
+Enter hourly rate: 70
+Regular pay: 2660.0
+Overtime pay: 0.0
+Total pay: 2660.0
+Has overtime: false"""
+# 3) Error: 
+"""Enter worked hours: 0
+Enter hourly rate: 42
+Regular pay: 0.0
+Overtime pay: 0.0
+Total pay: 0.0
+Has overtime: false"""
+
+
+# PROBLEMA 3 Discount eligibility with booleans
+# Descripción:
+"""Determine if a customer gets a discount (10%) based on: 
+Be a student 
+Be senior 
+Purchases >= 1000"""
+
+# Inputs:
+# - purchase_total (float)
+# - is_student_text (YES/NO)
+# - is_senior_text (YES/NO)
+
+# Outputs:
+# - "Discount eligible:"
+# - "Final total:"
+
+# Validations:
+# - purchase_total >= 0
+# - textos deben ser YES o NO
+
+# Código:
+try:
+    purchase_total = float(input("Enter purchase total: "))
+except:
+    print("Error: invalid input")
+    purchase_total = -1
+
+is_student_text = input("Is the customer a student? (YES/NO): ").upper()
+is_senior_text = input("Is the customer a senior? (YES/NO): ").upper()
+
+if purchase_total < 0:
+    print("Error: invalid input")
+elif is_student_text not in ("YES", "NO") or is_senior_text not in ("YES", "NO"):
+    print("Error: invalid input")
+else:
+    is_student = (is_student_text == "YES")
+    is_senior = (is_senior_text == "YES")
+
+    discount_eligible = (
+        is_student or
+        is_senior or
+        (purchase_total >= 1000.0))
+
+    if discount_eligible:
+        final_total = purchase_total * 0.9
+    else:
+        final_total = purchase_total
+
+    print("Discount eligible:", str(discount_eligible).lower())
+    print("Final total:", final_total)
+
+
+# Test cases:
+# 1) Normal: 
+"""Enter purchase total: 1500
+Is the customer a student? (YES/NO): no
+Is the customer a senior? (YES/NO): no
+Discount eligible: true
+Final total: 1350.0"""
+# 2) Border: 
+"""Enter purchase total: 1000
+Is the customer a student? (YES/NO): no
+Is the customer a senior? (YES/NO): no
+Discount eligible: true
+Final total: 900.0"""
+# 3) Error: 
+"""Enter purchase total: 800
+Is the customer a student? (YES/NO): no
+Is the customer a senior? (YES/NO): no
+Discount eligible: false
+Final total: 800.0"""
+
+# PROBLEMA 4 Basic statistics of three integers
+# Descripción:
+"""Read 3 integers and calculate: sum, average, maximum, minimum and if they are all even."""
+
+# Inputs:
+# - n1, n2, n3 (int)
+
+# Outputs:
+# - Sum, Average, Max, Min, All even
+
+# Validations:
+# Numbers must be convertible to int
+
+#Código:
+try:
+    n1 = int(input("Enter integer 1: "))
+    n2 = int(input("Enter integer 2: "))
+    n3 = int(input("Enter integer 3: "))
+except:
+    print("Error: invalid input")
+    n1 = n2 = n3 = None
+
+if n1 is None:
+    pass
+else:
+    sum_value = n1 + n2 + n3
+    average_value = sum_value / 3
+    max_value = max(n1, n2, n3)
+    min_value = min(n1, n2, n3)
+    all_even = (n1 % 2 == 0 and n2 % 2 == 0 and n3 % 2 == 0)
+
+    print("Sum:", sum_value)
+    print("Average:", average_value)
+    print("Max:", max_value)
+    print("Min:", min_value)
+    print("All even:", str(all_even).lower())
+
+
+# Test cases:
+# 1) Normal: 
+"""Enter integer 1: 3
+Enter integer 2: 2
+Enter integer 3: 5
+Sum: 10
+Average: 3.3333333333333335
+Max: 5
+Min: 2
+All even: false"""
+# 2) Border: 
+"""Enter integer 1: 0
+Enter integer 2: 0
+Enter integer 3: 0
+Sum: 0
+Average: 0.0
+Max: 0
+Min: 0
+All even: true"""
+# 3) Error: 
+"""Enter integer 1: 32
+Enter integer 2: 21
+Enter integer 3: a
+Error: invalid input"""
+
+# PROBLEMA 5 Loan eligibility
+# Descripción:
+"""Evaluates whether a user meets adequate income, debt and credit."""
+
+# Inputs:
+# - monthly_income (float)
+# - monthly_debt (float)
+# - credit_score (int)
+
+# Outputs:
+# - Debt ratio
+# - Eligible
+
+# Validations:
+# - income > 0, debt >=0, credit_score>=0
+
+
+#Código:
+try:
+    monthly_income = float(input("Enter monthly income: "))
+    monthly_debt = float(input("Enter monthly debt: "))
+    credit_score = int(input("Enter credit score: "))
+except:
+    print("Error: invalid input")
+    monthly_income = -1
+
+if monthly_income <= 0 or monthly_debt < 0 or credit_score < 0:
+    print("Error: invalid input")
+else:
+    debt_ratio = monthly_debt / monthly_income
+    eligible = (
+        monthly_income >= 8000.0 and
+        debt_ratio <= 0.4 and
+        credit_score >= 650
+    )
+
+    print("Debt ratio:", debt_ratio)
+    print("Eligible:", str(eligible).lower())
+
+
+# Test cases:
+# 1) Normal: 
+"""Enter monthly income: 9000
+Enter monthly debt: 500
+Enter credit score: 800
+Debt ratio: 0.05555555555555555
+Eligible: true"""
+# 2) Border: 
+"""Enter monthly income: 8000
+Enter monthly debt: 3000
+Enter credit score: 650
+Debt ratio: 0.375
+Eligible: true"""
+# 3) Error: 
+"""Enter monthly income: 8900
+Enter monthly debt: 4000
+Enter credit score: 700
+Debt ratio: 0.449438202247191
+Eligible: false"""
+
+
+# PROBLEMA 6 BMI calculation
+# Descripción:
+"""Calculates BMI and indicates whether the person is underweight, 
+normal or overweight."""
+
+# Inputs:
+# - weight_kg (float)
+# - height_m (float)
+
+# Outputs:
+# - BMI, Underweight, Normal, Overweight
+
+# Validations:
+# - valores > 0
+
+# Código: 
+try:
+    weight_kg = float(input("Enter weight in kg: "))
+    height_m = float(input("Enter height in meters: "))
+except:
+    print("Error: invalid input")
+    weight_kg = -1
+
+if weight_kg <= 0 or height_m <= 0:
+    print("Error: invalid input")
+else:
+    bmi = weight_kg / (height_m * height_m)
+    bmi_out = round(bmi, 2)
+
+    is_underweight = (bmi < 18.5)
+    is_normal = (bmi >= 18.5 and bmi < 25.0)
+    is_overweight = (bmi >= 25.0)
+
+    print("BMI:", bmi_out)
+    print("Underweight:", str(is_underweight).lower())
+    print("Normal:", str(is_normal).lower())
+    print("Overweight:", str(is_overweight).lower())
+
+
+# Test cases:
+# 1) Normal: 
+"""Enter weight in kg: 70
+Enter height in meters: 1.76
+BMI: 22.6
+Underweight: false
+Normal: true
+Overweight: false"""
+# 2) Border: 
+"""Enter weight in kg: 60
+Enter height in meters: 2.10
+BMI: 13.61
+Underweight: true
+Normal: false
+Overweight: false"""
+# 3) Error: 
+"""Enter weight in kg: 78
+Enter height in meters: 0
+Error: invalid input"""
+
+
+# ======================================================================
+# CONCLUSIONES 
+# ======================================================================
+"""
+Los tipos enteros y flotantes permiten representar y resolver problemas numéricos
+reales, desde operaciones básicas hasta cálculos más complejos en áreas como
+finanzas o física. El uso de valores booleanos facilita la toma de decisiones
+mediante estructuras condicionales como if, permitiendo que el programa reaccione
+según las reglas establecidas. Validar rangos, revisar que los datos ingresados
+sean correctos y evitar operaciones inválidas, como divisiones entre cero, ayuda
+a prevenir errores críticos que podrían detener la ejecución del programa.
+
+Las combinaciones de condiciones usando and y or permiten crear reglas más
+completas y precisas, adaptándose a situaciones que requieren múltiples
+verificaciones al mismo tiempo. Estos patrones son esenciales en tareas como el
+manejo de nóminas, aplicación de descuentos, evaluación de préstamos, análisis de
+datos y en general cualquier cálculo físico o matemático que dependa de valores
+numéricos y decisiones lógicas encadenadas."""
+
+# ======================================================================
+# REFERENCIAS 
+# ======================================================================
+# https://www.mclibre.org/consultar/python/lecciones/python-booleanos.html
+# https://recursospython.com/guias-y-manuales/booleanos-operaciones-logicas-y-binarias/ 
+# https://www.codigopiton.com/convertir-celsius-fahrenheit-kelvin-en-python/ 
+# https://altocodigo.blogspot.com/2018/07/maximo-y-minimo-en-python.html 
+# https://gist.github.com/variux/fdcdc1639fbe6a35ebac0829f1fa3963 
+# https://aiplanet.com/learn/introduction-to-python-basics-for-datascience-es/funciones-y-paquetes/1599/funciones-sum-y-round-en-python 
+# https://entrenamiento-python-basico.readthedocs.io/es/2.7/leccion3/tipo_numericos.html 
+# https://hetpro-store.com/TUTORIALES/numeros-en-python-3-datos-numericos/
+# https://www.picuino.com/es/python-datos-numeros.html
+
+
+# ======================================================================
+# REPOSITORIO DE GITHUB
+# ======================================================================
+
+# 
