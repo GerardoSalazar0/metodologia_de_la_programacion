@@ -453,4 +453,4 @@ numéricos y decisiones lógicas encadenadas."""
 # REPOSITORIO DE GITHUB
 # ======================================================================
 
-# 
+# https://github.com/GerardoSalazar0/metodologia_de_la_programacion/blob/main/src/Manejo%20de%20números%20y%20booleanos%20en%20Python
