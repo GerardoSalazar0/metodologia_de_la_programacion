@@ -527,4 +527,4 @@ repeticiones dentro de otras repeticiones.
 # REPOSITORIO DE GITHUB
 # ======================================================================
 
-#
+# https://github.com/GerardoSalazar0/metodologia_de_la_programacion/blob/main/src/Manejo%20de%20bucles%20en%20python.py
