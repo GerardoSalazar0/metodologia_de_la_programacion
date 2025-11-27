@@ -605,3 +605,4 @@ sólidos en Python.
 # REPOSITORIO DE GITHUB
 # ======================================================================
 
+# https://github.com/GerardoSalazar0/metodologia_de_la_programacion/blob/main/src/Manejo%20de%20Listas%2C%20Tuplas%20y%20Diccionario.py 
