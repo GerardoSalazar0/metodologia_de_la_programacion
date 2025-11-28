@@ -5,18 +5,21 @@
     si osbrepasa intentos bloqueo
 """
 
-pin_correcto = "777"
-max_intentos = 4
-intentos = 0
+VALID_PIN = "777"   # UPPER SNAKE CASE
+MAX_ATTEMPS = 4     # UPPER SNAKE CASE
+ATTEMPS = 0
 
-while intentos < max_intentos:
+while ATTEMPS < MAX_ATTEMPS:
     pin = input("Ingresa tu PIN: ")
-    if pin == pin_correcto:
+    if pin == VALID_PIN:
         print("Bienvenido.")
         break
     else:
         print("PIN incorrecto.")
-        intentos += 1
+        ATTEMPS += 1
+        remaining_attemps = MAX_ATTEMPS - ATTEMPS
+        if remaining_attemps >0 :
+            print("Pin incorrecto. Te quedan", remaining_attemps, "intentos")
+        else:
+            print("Maximo de intentos, yama")
 
-if intentos == max_intentos:
-    print("Demasiados intentos. Tarjeta bloqueada.")

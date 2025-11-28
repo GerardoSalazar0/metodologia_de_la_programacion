@@ -140,4 +140,4 @@ programas que trabajen con secuencias o cálculos iterativos.
 # REPOSITORIO DE GITHUB
 # ======================================================================
 
-# 
+# https://github.com/GerardoSalazar0/metodologia_de_la_programacion/blob/main/src/Fibonacci%20Series%20with%20Python.py 
